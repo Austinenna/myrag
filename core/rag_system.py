@@ -3,7 +3,7 @@ from .document_processor import DocumentProcessor
 from .vector_store import VectorStore
 from services.embedding_service import EmbeddingService
 from services.reranker import Reranker
-from services.generator import Generator
+from services.generator import Generator, DeepSeekGenerator
 
 
 class RAGSystem:
@@ -12,7 +12,7 @@ class RAGSystem:
     def __init__(self, 
                  embedding_model: str = "shibing624/text2vec-base-chinese",
                  rerank_model: str = 'cross-encoder/mmarco-mMiniLMv2-L12-H384-v1',
-                 generation_model: str = "gemini-2.5-flash",
+                 generation_model: str = "deepseek-chat",
                  collection_name: str = "default",
                  persist_directory: Optional[str] = None):
         """初始化RAG系统
@@ -28,8 +28,9 @@ class RAGSystem:
         self.embedding_service = EmbeddingService(embedding_model)
         self.vector_store = VectorStore(collection_name, persist_directory)
         self.reranker = Reranker(rerank_model)
-        self.generator = Generator(generation_model)
-    
+        # self.generator = Generator(generation_model)
+        self.generator = DeepSeekGenerator(generation_model)
+
     def load_document(self, doc_file: str) -> int:
         """加载文档到系统
         

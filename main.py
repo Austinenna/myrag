@@ -15,7 +15,7 @@ def main():
     rag = RAGSystem(
         embedding_model="shibing624/text2vec-base-chinese",
         rerank_model='cross-encoder/mmarco-mMiniLMv2-L12-H384-v1',
-        generation_model="gemini-2.5-flash"
+        generation_model="deepseek-chat"
     )
     
     # 加载文档
@@ -23,8 +23,8 @@ def main():
     doc_count = rag.load_document("doc.md")
     print(f"已加载 {doc_count} 个文档块")
     
-    # 查询问题
-    query = "哆啦A梦使用的3个秘密道具分别是什么？"
+    # 获取用户输入的查询问题
+    query = input("\n请输入您的问题: ")
     print(f"\n查询问题: {query}")
     
     # 生成回答

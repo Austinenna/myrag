@@ -23,7 +23,7 @@ def test_deepseek_import():
         # 测试从主包导入（如果在包内运行）
         try:
             import sys
-            sys.path.insert(0, '.')
+            sys.path.insert(0, '..')
             from __init__ import DeepSeekGenerator as MainDeepSeek
             print("✓ 从主包导入DeepSeekGenerator成功")
         except ImportError:

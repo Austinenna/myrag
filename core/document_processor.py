@@ -20,7 +20,8 @@ class DocumentProcessor:
             content = file.read()
         
         return [chunk.strip() for chunk in content.split("\n\n") if chunk.strip()]
-    
+        # return [chunk.strip() for chunk in content.split("\n") if chunk.strip()]
+
     def split_by_sentences(self, text: str, max_length: int = 500) -> List[str]:
         """按句子分割文本，控制每块的最大长度
         
